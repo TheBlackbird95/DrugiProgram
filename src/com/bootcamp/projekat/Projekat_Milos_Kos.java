@@ -81,7 +81,7 @@ public class Projekat_Milos_Kos {
         return jesteStepenBroja;
     }
 
-    /*
+    /**
     3. Implementirati metodu int[] zbirIndexaNizaMeta(int[] niz, int meta) koja vraća indekse dva elementa koji kada se saberu daju rezultat koji je jednak meti.
     Npr. ({2, 3, 10, -2}, 5) -> {0, 1}
      */
@@ -108,7 +108,16 @@ public class Projekat_Milos_Kos {
      */
 
     public static String toBinary(int n) {
-        return Integer.toBinaryString(n);
+
+        String s = "";
+        while (n > 0) {
+            s = n % 2 + s;
+            n = n / 2;
+        }
+        return s;
+
+    /*drugi nacin
+        return Integer.toBinaryString(n); */
     }
 
     /*
@@ -178,17 +187,17 @@ public class Projekat_Milos_Kos {
     Npr. {1, 2} -> {{1, 2}, {1}, {2}, {}}, {1, 2, 3} -> {{1, 2, 3}, {1, 2}, {1, 3}, {2, 3}, {1}, {2}, {3}, {}}
      */
 
-    public static int[][] powerSet(int[] niz) {
-        int brojPonavljanja = (int) Math.pow(2, niz.length);
-        int[][] rezultat = new int[brojPonavljanja][];
-        for (int i = 0; i < brojPonavljanja; ++i) {
-            rezultat[i] = new int[Integer.bitCount(i)];
-            for (int j = 0, b = i, k = 0; j < niz.length; ++j, b >>= 1) //zasto ov b >>= 1
-                if ((b & 1) != 0) //st znaci ovo b & 1
-                    rezultat[i][k++] = niz[j];
-        }
-        return rezultat;
-    }
+//    public static int[][] powerSet(int[] niz) {
+//        int brojPonavljanja = (int) Math.pow(2, niz.length);
+//        int[][] rezultat = new int[brojPonavljanja][];
+//        for (int i = 0; i < brojPonavljanja; ++i) {
+//            rezultat[i] = new int[Integer.bitCount(i)];
+//            for (int j = 0, b = i, k = 0; j < niz.length; ++j, b >>= 1) //zasto ov b >>= 1
+//                if ((b & 1) != 0) //st znaci ovo b & 1
+//                    rezultat[i][k++] = niz[j];
+//       }
+//       return rezultat;
+//    }
 
     /*
     9.* Implementirati metodu boolean validatePhone(String num) koja proverava da li je broj napisan u odgovarajućem formatu.
@@ -205,6 +214,7 @@ public class Projekat_Milos_Kos {
     }
 
     public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
         // System.out.println("Vas niz je: " + Arrays.toString(unosChar(5)));
         // System.out.println("Vas niz je: " + Arrays.toString(unosString(5)));
         // System.out.println("Vas niz je: " + Arrays.toString(unosInt(5)));
